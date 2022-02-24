@@ -120,9 +120,12 @@ function drawResultFrame() {
   let button = createButton("Check Answer");
   button.position(windowWidth - 200, resultTop + Math.floor(resultHeight / 2)); 
   button.mousePressed(checkAnswer);
+  button.style("background-color", codecademyDragDrop);
+  button.style("color", "white");
   button.removeAttribute("disabled");
   if(!tableComplete) {
     button.attribute("disabled", true);
+    button.style("background-color", "grey");
   }
   textSize(16);
   textAlign(LEFT, CENTER);
