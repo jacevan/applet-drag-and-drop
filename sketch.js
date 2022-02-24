@@ -53,26 +53,28 @@ function drawPromptFrame() {
 }
 
 function drawTableFrame() {
-  const tableHeight = windowHeight - promptHeight - dragHeight;
+  const tableHeight = windowHeight - promptHeight - dragHeight - resultHeight;
   const tableTop = promptHeight;
   const tableCenter = Math.floor(windowWidth / 2);
-  let rowAdjust = 50;
+  let rowHeight = 80
+  let rowAdjust = 40;
+  let imageSize = 60;
 
   fill('white');
   textSize(24);
   for(let row of configRows) {
     if(row['typeColumn1'] === 'text') {
       textAlign(RIGHT, CENTER);
-      text(row['contentColumn1'], tableCenter - 50, tableTop + rowAdjust);
+      text(row['contentColumn1'], tableCenter - rowHeight/2, tableTop + rowAdjust);
     } 
     if(row['typeColumn2'] === 'dragDrop') {
       drops = [...drops, 
                 {
                   ids: [rowAdjust], 
                   x: tableCenter + 50,
-                  y: tableTop + rowAdjust - 40, // image height hardcoded
-                  width: 80, // image width hardcoded
-                  height: 80 // image height hardcoded
+                  y: tableTop + rowAdjust - imageSize / 2, // image height hardcoded
+                  width: imageSize, // image width hardcoded
+                  height: imageSize // image height hardcoded
                 }
       ]
       drags = [...drags,
@@ -82,13 +84,13 @@ function drawTableFrame() {
                 }
       ]
     } 
-    rowAdjust += 100;
+    rowAdjust += rowHeight;
   }
 
   strokeWeight(4);
   stroke(255);
   // line(tableCenter, tableTop, tableCenter, tableTop + rowAdjust - 50)
-  dragTop = tableTop + rowAdjust - 50
+  dragTop = tableTop + rowAdjust - rowHeight/2
 }
 
 function drawDragFrame() {
