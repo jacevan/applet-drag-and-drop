@@ -104,7 +104,7 @@ function drawDragFrame() {
 
 
   drags.forEach(drag => {
-    drag.x = dragStart + 10 // hardcoded
+    drag.x = dragStart + columnAdjust
     drag.y = dragY
     drag.width = imageSize;
     drag.height = imageSize;
