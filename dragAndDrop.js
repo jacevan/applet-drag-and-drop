@@ -234,7 +234,7 @@ class Drag {
     fill(codecademyDragDrop);
     rect(this.left, this.top, this.width, this.height);
     if(this.content['type'] === "image") {
-      image(this.image, this.left, this.top);
+      image(this.image, this.left, this.top, this.width, this.height);
     }
     // fill("white")
     // textSize(32);
