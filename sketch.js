@@ -32,7 +32,7 @@ function setup() {
 }
 
 function draw(){
-  drawCanvas();
+  updateCanvas();
   drawPromptFrame();
   drawTableFrame();
   drawDragFrame();
@@ -42,6 +42,10 @@ function draw(){
 
 function drawCanvas() {
   createCanvas(windowWidth, windowHeight);
+  updateCanvas();
+}
+
+function updateCanvas() {
   background(codecademyBackground);
 }
 
