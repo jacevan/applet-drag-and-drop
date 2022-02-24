@@ -38,7 +38,6 @@ function draw(){
   drawDragFrame();
   drawResultFrame();
   ddManager.update();
-  console.log("Test")
 }
 
 function drawCanvas() {
