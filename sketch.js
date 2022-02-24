@@ -52,6 +52,7 @@ function updateCanvas() {
 function drawPromptFrame() {
   fill('white');
   textSize(24);
+  strokeWeight(0);
   textAlign(CENTER, CENTER);
   text(configPrompt, Math.floor(windowWidth / 2), 25);
 }
@@ -69,6 +70,7 @@ function drawTableFrame() {
   for(let row of configRows) {
     if(row['typeColumn1'] === 'text') {
       textAlign(RIGHT, CENTER);
+      strokeWeight(0);
       text(row['contentColumn1'], tableCenter - rowHeight/2, tableTop + rowAdjust);
     } 
     if(row['typeColumn2'] === 'dragDrop') {
