@@ -14,6 +14,7 @@ const resultHeight = 50;
 let resultMessage = "";
 let dragTop = 0;
 
+let tableComplete = false;
 let results = [];
 
 let ddManager = undefined;
@@ -26,8 +27,8 @@ function setup() {
   drawPromptFrame();
   drawTableFrame();
   drawDragFrame();
-  drawResultFrame();
   ddManager = new DragDropManager(drags, drops);
+  drawResultFrame();
 }
 
 function draw(){
@@ -108,12 +109,21 @@ function drawDragFrame() {
 
 function drawResultFrame() {
   const resultTop = dragTop + dragHeight;
-  for(result of results) {
+  tableComplete = true;
+  // ddManager.updateMatches();
+  for(let match of ddManager.matches) {
+    if(match === undefined) {
+      tableComplete = false;
+    }
   }
 
   let button = createButton("Check Answer");
   button.position(windowWidth - 200, resultTop + Math.floor(resultHeight / 2)); 
   button.mousePressed(checkAnswer);
+  button.removeAttribute("disabled");
+  if(!tableComplete) {
+    button.attribute("disabled", true);
+  }
   textSize(16);
   textAlign(LEFT, CENTER);
   strokeWeight(1);
@@ -122,14 +132,12 @@ function drawResultFrame() {
 
 function checkAnswer() {
   let correct = true;
+  tableComplete = true;
   resultMessage = "";
-  ddManager.updateMatches();
+  // ddManager.updateMatches();
   let rowCount = 1;
   for(let match of ddManager.matches) {
-    if(match === undefined) {
-      correct = false;
-      resultMessage += `Row ${rowCount} is empty. `
-    } else if(!match) {
+    if(!match) {
       correct = false;
       resultMessage += `Row ${rowCount} is incorrect. `
     }

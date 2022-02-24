@@ -26,6 +26,7 @@ class DragDropManager {
   update() {
     this.updateDrops();
     this.updateDrags();
+    this.updateMatches();
   }
 
   updateDrops() {
