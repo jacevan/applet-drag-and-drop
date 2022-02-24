@@ -94,18 +94,21 @@ function drawTableFrame() {
 }
 
 function drawDragFrame() {
-  const centerWidth = Math.floor(drags.length / 2) * 100; // hardcoded
+  let columnAdjust = 10; 
+  let columnWidth = 80
+  let rowAdjust = 40;
+  let imageSize = 60;
+  const centerWidth = Math.floor(drags.length / 2) * columnWidth; // hardcoded
   const dragStart = Math.floor(windowWidth / 2) - centerWidth;
-  const dragX = dragTop + 10; // hardcoded
-  let columnAdjust = 10; // hardcoded
+  const dragY = dragTop + columnAdjust;
 
 
   drags.forEach(drag => {
-    drag.x = dragStart + columnAdjust
-    drag.y = dragX
-    drag.width = 80
-    drag.height = 80
-    columnAdjust += 100;
+    drag.x = dragStart + 10 // hardcoded
+    drag.y = dragY
+    drag.width = imageSize;
+    drag.height = imageSize;
+    columnAdjust += columnWidth;
   });
 }
 
